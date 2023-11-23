@@ -1,0 +1,34 @@
+class School:
+    def __init__(self):
+        self.students = {}
+
+    def add_student(self, student_id, name, grade, classes, grades):
+        self.students[student_id] = {
+            "name": name,
+            "grade": grade,
+            "classes": classes,
+            "grades": grades
+        }
+
+    def get_info(self, student_id, key=None):
+        if student_id in self.students:
+            if key is None:
+                return self.students[student_id]
+            if key in self.students[student_id]:
+                return self.students[student_id][key]
+
+    def set_info(self, student_id, key, value):
+        if student_id in self.students:
+            if key in self.students[student_id]:
+                self.students[student_id][key] = value
+
+
+    def main(self):
+        self.add_student('123', 'John Doe', '10th', ['Math', 'Science'], {'Math': 'A', 'Science': 'B'})
+        self.add_student('124', 'Jane Smith', '11th', ['History', 'English'], {'History': 'B', 'English': 'A'})
+        #print(self.get_info('123'))
+        print(self.get_info('124', 'grade'))
+        
+if __name__ == "__main__":
+    school_instance = School()
+    school_instance.main()
